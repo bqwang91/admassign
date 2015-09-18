@@ -6,7 +6,12 @@
 4. put this to the cgi script after "import sys" when need to import pymongo:
 sys.path.insert(0, '/usr/local/lib/python2.7/site-packages/pymongo-3.0.3-py2.7-macosx-10.10-x86_64.egg' or <path to the pymongo lib>)
 
-5. run: python -m CGIHTTPServer 8001
+5. pip install py2neo
+
+6. put this to the cgi script after "import sys" when need to import python neo4j lib:
+sys.path.insert(0, '/usr/local/lib/python2.7/site-packages'
+
+7. run: python -m CGIHTTPServer 8001
 
 
 
