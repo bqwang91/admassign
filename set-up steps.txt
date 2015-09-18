@@ -1,0 +1,12 @@
+1. put script into cgi-bin
+2. chmod +x <file_name> to all the scripts inside cgi-bin
+
+3. pip install pymongo
+
+4. put this to the cgi script after "import sys" when need to import pymongo:
+sys.path.insert(0, '/usr/local/lib/python2.7/site-packages/pymongo-3.0.3-py2.7-macosx-10.10-x86_64.egg' or <path to the pymongo lib>)
+
+5. run: python -m CGIHTTPServer 8001
+
+
+
