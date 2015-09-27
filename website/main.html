@@ -1,6 +1,5 @@
 <html>
-
-
+  
 <head>
 <script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
@@ -8,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="assets/css/jquery-ui.min.css">
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="assets/css/jquery-ui.theme.min.css">
+<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
 </head>
 
@@ -16,7 +16,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand no-underline" href="index.html">Web</a>
+      <a class="navbar-brand no-underline" href="index.html">HetRec2011</a>
     </div>
     <a href="cgi-bin/logout.py" type="button" class="btn btn-default navbar-btn pull-right">Logout</a>
   </div>
@@ -25,18 +25,68 @@
 
 <div id="container">
 
-<form id="query-form" class="form-inline">
-  <div class="form-group">
-    <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+  <div class="row col-md-2" style="margin-top:0px; margin-bottom:10px">
+    <h5 id="welcome-message">Welcome</h5>
   </div>
-  <button id="get-data" type="button" class="btn btn-primary">Get data</button>
-</form>
 
-<span id="result"><span>
+  <div class="row">
+
+  <div class="col-md-10 col-md-offset-1">
+    <form id="query-form" class="form-inline">
+      <div class="form-group">
+        <input type="text" class="form-control" name="name" id="name" placeholder="Artist Name">
+      </div>
+      <span id="test"></span>
+      <button id="search_by_name" type="button" class="btn btn-primary">Search</button>
+    <span>Or</span>
+      <div class="form-group">
+        <select id="select_hour" name = "hour" class="form-control">
+          <option value="Hour">Select Recommendation Type</option>
+          <option value="01">Listening counts of artists listened by all your friends</option>
+          <option value="02">Number of followers of artists who are your friends</option>
+          <option value="03">Tag</option>
+        </select>
+      </div>
+      <button id="search_by_recommendation" type="button" class="btn btn-primary">Go</button>
+    </form>
+  </div>
+
+  <div id="main-dislay-container" class="col-md-7">
+    Hello
+  </div>
+
+  <div id="right-side-container" class="col-md-5">
+    <h4>Popular Artists:</h4>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#listening_counts" aria-controls="home" role="tab" data-toggle="tab">Listening counts</a></li>
+      <li role="presentation"><a href="#number_of_users" aria-controls="profile" role="tab" data-toggle="tab">Number of listeners</a></li>
+      <li role="presentation"><a href="#tag_listening_count" aria-controls="messages" role="tab" data-toggle="tab">Listeining counts of tag</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="listening_counts">
+        <ul class="recommend-artist-lists list-group col-md-8 col-md-offset-1"></ul>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="number_of_users">
+        <ul class="recommend-artist-lists list-group col-md-8 col-md-offset-1"></ul>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="tag_listening_count">
+        <ul class="recommend-artist-lists list-group col-md-8 col-md-offset-1"></ul>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+
+
+  <span id="result"><span>
 
 </div>
 
-<script type="text/javascript" src="assets/js/index.js"></script>
+<script type="text/javascript" src="assets/js/main.js"></script>
 
 </body>
 

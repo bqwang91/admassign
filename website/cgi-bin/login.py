@@ -9,29 +9,40 @@ from pymongo import MongoClient
 cgitb.enable() # for troubleshooting
 
 data = cgi.FieldStorage()
-user_name = data["name"].value
+user_id = data["user_id"].value
 
-c = Cookie.SimpleCookie()
+client = MongoClient('localhost', 27017)
+db = client["test"]
 
-c['user'] = user_name
+query = {"_id" : user_id}
+user_test = db.users.find(query).count()
 
-print c
-print "Content-type: text/html\n"
+if user_test > 0:
+	c = Cookie.SimpleCookie()
+	c['user'] = user_id
+	
+	print c
+	print "Content-type: text/html\n\n"
 
-# empty lines so that the browser knows that the header is over
-print ""
-print ""
+	# empty lines so that the browser knows that the header is over
+	print ""
+	print ""
+	print ""
+	print ""
 
-redirectURL = "http://localhost:8001/main.html"
+	redirectURL = "http://localhost:8001/main.html"
 
-print 'Location: %s' % redirectURL
-print # HTTP says you have to have a blank line between headers and content
-print '<html>'
-print '  <head>'
-print '    <meta http-equiv="refresh" content="0;url=%s" />' % redirectURL
-print '  </head>' 
-print '  <body>'
-print '  </body>'
-print '</html>'
+	print 'Location: %s' % redirectURL
+	print # HTTP says you have to have a blank line between headers and content
+	print '<html>'
+	print '  <head>'
+	print '    <meta http-equiv="refresh" content="0;url=%s" />' % redirectURL
+	print '  </head>' 
+	print '  <body>'
+	print '  </body>'
+	print '</html>'
+else:
+	print "Content-Type: text/html\n"
+	print "fail"
 
 

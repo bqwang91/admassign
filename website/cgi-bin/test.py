@@ -15,15 +15,15 @@ data = cgi.FieldStorage()
 
 #MongoDb
 client = MongoClient('localhost', 27017)
-db = client["bwan4674"]
+db = client["test"]
 
 posts = db.blog
 
 first_post = posts.find_one()
 
 #neo4j
-graph = Graph()
-graph.cypher.execute("CREATE (a:Person {name:{N}})", {"N": "Alice"})
+#graph = Graph()
+#graph.cypher.execute("CREATE (a:Person {name:{N}})", {"N": "Alice"})
 
 
 #this is the actual output
@@ -32,7 +32,7 @@ print "Content-Type: text/html\n"
 #GET data from front end
 print data["name"].value
 
-#Neo4j data
+Neo4j data
 for record in graph.cypher.stream("MATCH (n) RETURN n LIMIT 10"):
     print record[0]
 

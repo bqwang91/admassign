@@ -1,46 +1,42 @@
 
+/*
+ * Submit login form on click of login button
+ */
 $("#log-in").on('click', function(event) {
-	/* Act on the event */
+
 	var $form = $("#login-form");
-	var name = $form.find("input[name='user_name']").val();
+	var user_id = $form.find("input[name='user_id']").val();
 
-	$.ajax({
-	url: 'cgi-bin/login.py',
-	type: 'GET',
-	data: {name: name},
-	})
-	.done(function(data) {
-		$("#result").html(data);
-		console.log("success");
-	})
-	.fail(function() {
-		console.log("error");
-	})
-	.always(function() {
-		console.log("complete");
-	});
-});
-
-$("#get-data").on('click', function(event) {
-	/* Act on the event */
-	var $form = $("#query-form");
-	var name = $form.find("input[name='name']").val();
-
-	$.ajax({
-	url: 'cgi-bin/test.py',
-	type: 'GET',
-	data: {name: name},
-	})
-	.done(function(data) {
-		$("#result").html(data);
-		console.log("success");
-	})
-	.fail(function() {
-		console.log("error");
-	})
-	.always(function() {
-		console.log("complete");
-	});
+	if(user_id == ""){
+		$("#input_userid").addClass('has-error');
+		$("#result").css('color','#a94442');
+		$("#result").html("Please enter an user id");
+	}
+	else{
+		$.ajax({
+		url: 'cgi-bin/login.py',
+		type: 'GET',
+		data: {user_id: user_id},
+		})
+		.done(function(data) {
+			if(data.trim() == "fail"){
+				$("#input_userid").addClass('has-error');
+				$("#result").css('color','#a94442');
+				$("#result").html("No such user");
+			}
+			else{
+				$("body").html(data);
+			}
+			console.log("success");
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+	}
+	
 });
 
 

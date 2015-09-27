@@ -13,7 +13,7 @@ c['user']['expires']='Thu, 01 Jan 1970 00:00:00 GMT'
 print c
 print "Content-type: text/html\n\n"
 
-redirectURL = "http://localhost:8001/cgi-bin/redirect.py"
+redirectURL = "http://localhost:8001"
 
 print 'Location: %s' % redirectURL
 print # HTTP says you have to have a blank line between headers and content
