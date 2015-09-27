@@ -8,11 +8,11 @@ $(document).ready(function() {
 		tokens = data.split('\t');
 		if(tokens[0] == "success"){
 			$("#welcome-message").html("Welcome User " + tokens[1]);
-			var ul_html = "";
-			for(i = 2; i < tokens.length; i++){
-				ul_html += tokens[i];
-			}
-			$("#listening_counts ul:first").html(ul_html);
+			var ul_one_html = tokens[2];
+			var ul_two_html = tokens[3];
+
+			$("#listening_counts ul:first").html(ul_one_html);
+			$("#number_of_users ul:first").html(ul_two_html);
 		}
 		else{
 			$("body").html(data)
@@ -30,18 +30,25 @@ $(document).ready(function() {
 /*
  *
  */
-$("#get-data").on('click', function(event) {
+$("#query-by-name").on('click', function(event) {
 	/* Act on the event */
 	var $form = $("#query-form");
-	var name = $form.find("input[name='name']").val();
+	var artist_name = $form.find("input[name='artist_name']").val();
 
 	$.ajax({
-	url: 'cgi-bin/test.py',
+	url: 'cgi-bin/get_artist_by_name.py',
 	type: 'GET',
-	data: {name: name},
+	data: {artist_name: artist_name},
 	})
 	.done(function(data) {
-		$("#result").html(data);
+		tokens = data.split('\t')
+		if(tokens[0] == "success"){
+			$("#artists_display").html(tokens[1]);
+		}
+		else{
+			$("body").html = data
+		}
+		
 		console.log("success");
 	})
 	.fail(function() {
