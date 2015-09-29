@@ -39,7 +39,7 @@ if 'HTTP_COOKIE' in os.environ:
 		artists_list_two = ""
 		for artist in popular_artists_two:
 			artists_list_two += '<li class="list-group-item clearfix"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>' + '<span class="artist-name">' + artist['name'] + '</span>'+ '<span class="pull-right">Number of listeners:' +  str(artist['listener_count']) + '</span>'+ '</li>'
-
+		
 		print "success" + '\t' + data
 		print '\t' + artists_list_one + '\t' + artists_list_two
 

@@ -75,8 +75,11 @@
         <ul class="recommend-artists-list list-group col-md-8 col-md-offset-1"></ul>
       </div>
       <div role="tabpanel" class="tab-pane" id="tag_listening_count">
-        <form id="tag-query-form" class="form-inline">
-          <input id="" name="tag_search_name">
+        <form id="popular_artists_by_tag_form" class="form-inline" style="margin-top:20px">
+          <div class="form-group">
+              <input name="tag_search_name" class="form-control" placeholder="Tag Name to search">
+          </div>
+          <button id="tag_name_submit" type="button" class="btn btn-primary">Search</button>
         </form>
         <ul class="recommend-artists-list list-group col-md-8 col-md-offset-1"></ul>
       </div>

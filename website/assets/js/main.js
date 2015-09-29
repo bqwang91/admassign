@@ -59,4 +59,36 @@ $("#query-by-name").on('click', function(event) {
 	});
 });
 
+/*
+ *
+ */
+$("#tag_name_submit").on('click', function(event) {
+	/* Act on the event */
+	var $form = $("#popular_artists_by_tag_form");
+	var tag_name = $form.find("input[name='tag_search_name']").val();
+
+	$.ajax({
+	url: 'cgi-bin/get_popular_artists_by_tag.py',
+	type: 'GET',
+	data: {tag_name: tag_name},
+	})
+	.done(function(data) {
+		tokens = data.split('\t')
+		if(tokens[0] == "success"){
+			$("#tag_listening_count ul:first").html(tokens[1]);
+		}
+		else{
+			$("body").html = data
+		}
+		
+		console.log("success");
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+});
+
 
