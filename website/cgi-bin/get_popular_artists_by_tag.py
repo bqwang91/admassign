@@ -32,8 +32,11 @@ if 'HTTP_COOKIE' in os.environ:
 		artists_html = ""
 		for artist in top_5_artists_by_tag:
 			artists_html += '<li class="list-group-item clearfix"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>' + '<span class="artist-name">' + artist['name'] + '</span>'+ '<span class="pull-right">Number of listeners:' +  str(artist['listening_count']) + '</span>'+ '</li>'
+
+		if top_5_artists_by_tag.count() is 0:
+			artists_html = "<h4>No Artist has found</h4>"
 		
-		print "success" + '\t' + artists_html
+		print "success" + '\t' + artists_html.encode('ascii','ignore')
 
 	except KeyError:
 		redirectURL = "http://localhost:8001"

@@ -46,7 +46,7 @@ $("#query-by-name").on('click', function(event) {
 			$("#artists_display").html(tokens[1]);
 		}
 		else{
-			$("body").html = data
+			$("body").html(data);
 		}
 		
 		console.log("success");
@@ -78,7 +78,7 @@ $("#tag_name_submit").on('click', function(event) {
 			$("#tag_listening_count ul:first").html(tokens[1]);
 		}
 		else{
-			$("body").html = data
+			$("body").html(data);
 		}
 		
 		console.log("success");
