@@ -32,10 +32,12 @@ if 'HTTP_COOKIE' in os.environ:
 
 		artists_html = ""
 		for artist in artists_by_name:
-			artists_html += '<div class="col-sm-6 col-md-9"><div class="thumbnail">' + '<img src="..." alt="...">' + '<div class="caption"><h3>' + artist['name'] + '</h3>' + '<p><b>profile url:</b> ' + artist['url'] + '</p>' + '<p>Listened <b>' + str(artist['listening_count']) + '</b> times</p>' + '<p><b>' + str(artist['listener_count']) + '</b> listeners</p>' + '<p><a href="#" class="btn btn-primary" role="button">Listen</a></p></div></div></div>'
+			artists_html += '<div class="col-sm-6 col-md-9"><div class="thumbnail">' + '<img src="..." alt="...">' + '<div class="caption"><h3>' + artist['name'] + '</h3>' + '<p><b>profile url:</b> ' + artist['url'] + '</p>' + '<p>Listened <b>' + str(artist['listening_count']) + '</b> times</p>' + '<p><b>' + str(artist['listener_count']) + '</b> listeners</p>' + "<p><a class='btn btn-primary listen' artist_id='" + artist['_id'] + "' role='button'>Listen</a></p></div></div></div>"
 		
 		if artists_by_name.count() is 0:
 			artists_html = "<h4>No Artist has found</h4>"
+		
+		artists_html += "<script type='text/javascript' src='assets/js/main.js'></script>"
 		print "success" + '\t' + artists_html
 
 	except KeyError:

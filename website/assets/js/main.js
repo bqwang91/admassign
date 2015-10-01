@@ -120,3 +120,30 @@ $("#search_by_recommendation").on('click', function(event){
 	});
 });
 
+$("a.listen").on('click', function(event){
+	/* Act on the event */
+	var artist_id = $(this).attr('artist_id');
+
+	$.ajax({
+	url: 'cgi-bin/listen.py',
+	type: 'GET',
+	data: {artist_id: artist_id},
+	})
+	.done(function(data) {
+		tokens = data.split('\t')
+		if(tokens[0] == "success"){
+			confirm("You have listened");		}
+		else{
+			$("body").html(data);
+		}
+		
+		console.log("success");
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+});
+
