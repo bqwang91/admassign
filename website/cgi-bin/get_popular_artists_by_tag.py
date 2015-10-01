@@ -19,13 +19,13 @@ if 'HTTP_COOKIE' in os.environ:
 	c.load(cookie_string)
 	
 	try:
-		data=c['user'].value.strip()
+		user_id=c['user'].value.strip()
 
 		print "Content-Type: text/html\n"
 		
 		# Connect to MongoDb
 		client = MongoClient('localhost', 27017)
-		db = client["test"]
+		db = client["comp5338Demo"]
 
 		top_5_artists_by_tag = db.artists.find({"tags" : search_tag_name}).sort("listening_count",direction=-1).limit(5)
 

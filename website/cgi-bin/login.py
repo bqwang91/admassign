@@ -12,7 +12,7 @@ data = cgi.FieldStorage()
 user_id = data["user_id"].value
 
 client = MongoClient('localhost', 27017)
-db = client["test"]
+db = client["comp5338Demo"]
 
 query = {"_id" : user_id}
 user_test = db.users.find(query).count()

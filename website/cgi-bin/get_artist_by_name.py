@@ -2,6 +2,7 @@
 import os
 import sys
 sys.path.insert(0, '/usr/local/lib/python2.7/site-packages/pymongo-3.0.3-py2.7-macosx-10.10-x86_64.egg')
+sys.path.insert(0, '/usr/local/lib/python2.7/site-packages')
 import pymongo
 from pymongo import MongoClient
 import Cookie
@@ -25,13 +26,13 @@ if 'HTTP_COOKIE' in os.environ:
 		
 		# Connect to MongoDb
 		client = MongoClient('localhost', 27017)
-		db = client["test"]
+		db = client["comp5338Demo"]
 
 		artists_by_name = db.artists.find({"name" : search_name})
 
 		artists_html = ""
 		for artist in artists_by_name:
-			artists_html += '<div class="col-sm-6 col-md-5"><div class="thumbnail">' + '<img src="..." alt="...">' + '<div class="caption"><h3>' + artist['name'] + '</h3>' + '<p><b>profile url:</b> ' + artist['prof_url'] + '</p>' + '<p>Listened <b>' + str(artist['listening_count']) + '</b> times</p>' + '<p><b>' + str(artist['listener_count']) + '</b> listeners</p>' + '<p><a href="#" class="btn btn-primary" role="button">Listen</a></p></div></div></div>'
+			artists_html += '<div class="col-sm-6 col-md-9"><div class="thumbnail">' + '<img src="..." alt="...">' + '<div class="caption"><h3>' + artist['name'] + '</h3>' + '<p><b>profile url:</b> ' + artist['url'] + '</p>' + '<p>Listened <b>' + str(artist['listening_count']) + '</b> times</p>' + '<p><b>' + str(artist['listener_count']) + '</b> listeners</p>' + '<p><a href="#" class="btn btn-primary" role="button">Listen</a></p></div></div></div>'
 		
 		if artists_by_name.count() is 0:
 			artists_html = "<h4>No Artist has found</h4>"

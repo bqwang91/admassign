@@ -39,12 +39,12 @@
       <span id="test"></span>
       <button id="query-by-name" type="button" class="btn btn-primary">Search</button>
     <span>Or</span>
-      <div class="form-group">
-        <select id="select_hour" name = "hour" class="form-control">
-          <option value="Hour">Search By Recommendation Type</option>
-          <option value="01">Listening counts of artists listened by all your friends</option>
-          <option value="02">Number of followers of artists who are your friends</option>
-          <option value="03">Tag</option>
+      <div id="recommendation_form" class="form-group">
+        <select name = "recommendation_type" class="form-control">
+          <option value="0">Search By Recommendation Type</option>
+          <option value="1">Listening counts of artists listened by all your friends</option>
+          <option value="2">Number of followers of artists who are your friends</option>
+          <option value="3">Tag</option>
         </select>
       </div>
       <button id="search_by_recommendation" type="button" class="btn btn-primary">Go</button>
@@ -77,7 +77,7 @@
       <div role="tabpanel" class="tab-pane" id="tag_listening_count">
         <form id="popular_artists_by_tag_form" class="form-inline" style="margin-top:20px">
           <div class="form-group">
-              <input name="tag_search_name" class="form-control" placeholder="Tag Name to search">
+              <input name="tag_search_name" class="form-control" placeholder="Tag Name">
           </div>
           <button id="tag_name_submit" type="button" class="btn btn-primary">Search</button>
         </form>

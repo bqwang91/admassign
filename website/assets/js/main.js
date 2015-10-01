@@ -91,4 +91,32 @@ $("#tag_name_submit").on('click', function(event) {
 	});
 });
 
+$("#search_by_recommendation").on('click', function(event){
+	/* Act on the event */
+	var $form = $("#recommendation_form");
+	var recommendation_type = $form.find("select[name='recommendation_type']").val();
+
+	$.ajax({
+	url: 'cgi-bin/get_artists_by_recommendation.py',
+	type: 'GET',
+	data: {recommendation_type: recommendation_type},
+	})
+	.done(function(data) {
+		tokens = data.split('\t')
+		if(tokens[0] == "success"){
+			$("#artists_display").html(tokens[1]);		
+		}
+		else{
+			$("body").html(data);
+		}
+		
+		console.log("success");
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+});
 
